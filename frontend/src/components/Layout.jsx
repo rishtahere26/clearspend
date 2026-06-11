@@ -3,10 +3,10 @@ import { useAuth } from '../hooks/useAuth'
 import { LayoutDashboard, Upload, Building2, Handshake, LogOut, Zap } from 'lucide-react'
 
 const navItems = [
-  { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { to: '/upload', icon: Upload, label: 'Upload' },
-  { to: '/vendors', icon: Building2, label: 'Vendors' },
-  { to: '/negotiate', icon: Handshake, label: 'Negotiate' },
+  { to: '/app/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { to: '/app/upload', icon: Upload, label: 'Upload' },
+  { to: '/app/vendors', icon: Building2, label: 'Vendors' },
+  { to: '/app/negotiate', icon: Handshake, label: 'Negotiate' },
 ]
 
 export default function Layout() {
