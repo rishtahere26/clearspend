@@ -1,37 +1,44 @@
 import { useAuth } from '../hooks/useAuth'
 import { Zap } from 'lucide-react'
+import { supabase } from '../lib/supabase'
 
 export default function Login() {
-  const { signInWithGoogle } = useAuth()
+  const signInWithGoogle = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'https://clearspend-nine.vercel.app/auth/callback'
+      }
+    })
+  }
 
   return (
     <div style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      background: 'radial-gradient(ellipse at 60% 0%, #1e3a5f 0%, var(--bg) 60%)',
+      background: 'radial-gradient(ellipse at 60% 0%, #1e3a5f 0%, #07090f 60%)',
     }}>
       <div style={{
-        background: 'var(--surface)', border: '1px solid var(--border)',
+        background: '#111827', border: '1px solid #1f2d45',
         borderRadius: '20px', padding: '48px 40px', textAlign: 'center',
         maxWidth: '400px', width: '90%',
       }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-          <div style={{ background: 'var(--accent)', borderRadius: '14px', padding: '12px' }}>
+          <div style={{ background: 'linear-gradient(135deg, #6366f1, #3b82f6)', borderRadius: '14px', padding: '12px' }}>
             <Zap size={28} color="#fff" />
           </div>
         </div>
-        <h1 style={{ fontSize: '26px', fontWeight: 700, marginBottom: '8px', letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontSize: '26px', fontWeight: 700, marginBottom: '8px', letterSpacing: '-0.02em', color: '#f0f4ff' }}>
           Welcome to ClearSpend
         </h1>
-        <p style={{ color: 'var(--muted)', fontSize: '14px', marginBottom: '32px', lineHeight: 1.6 }}>
+        <p style={{ color: '#6b7a99', fontSize: '14px', marginBottom: '32px', lineHeight: 1.6 }}>
           Procurement intelligence that turns your receipts into negotiation power.
         </p>
-
         <button onClick={signInWithGoogle} style={{
           width: '100%', padding: '14px', borderRadius: '10px',
           background: '#fff', color: '#1a1a1a', border: 'none',
           fontSize: '15px', fontWeight: 600, display: 'flex',
           alignItems: 'center', justifyContent: 'center', gap: '10px',
-          transition: 'opacity 0.2s',
+          cursor: 'pointer', transition: 'opacity 0.2s',
         }}
           onMouseOver={e => e.currentTarget.style.opacity = '0.9'}
           onMouseOut={e => e.currentTarget.style.opacity = '1'}
@@ -44,8 +51,7 @@ export default function Login() {
           </svg>
           Continue with Google
         </button>
-
-        <p style={{ color: 'var(--muted)', fontSize: '12px', marginTop: '24px' }}>
+        <p style={{ color: '#374151', fontSize: '12px', marginTop: '24px' }}>
           Free forever. No credit card required.
         </p>
       </div>
