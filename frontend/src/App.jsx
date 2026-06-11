@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
+import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Upload from './pages/Upload'
@@ -16,9 +17,10 @@ function PrivateRoute({ children }) {
 export default function App() {
   return (
     <Routes>
+      <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
-        <Route index element={<Navigate to="/dashboard" />} />
+      <Route path="/app" element={<PrivateRoute><Layout /></PrivateRoute>}>
+        <Route index element={<Navigate to="/app/dashboard" />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="upload" element={<Upload />} />
         <Route path="vendors" element={<Vendors />} />
